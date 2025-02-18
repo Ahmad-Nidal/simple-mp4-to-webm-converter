@@ -1,15 +1,15 @@
-import ffmpeg, { setFfmpegPath } from 'fluent-ffmpeg';
-import ffmpegPath from 'ffmpeg-static';
-import { format, dirname, parse } from 'path';
+const ffmpeg = require('fluent-ffmpeg');
+const ffmpegPath = require('ffmpeg-static');
+const path = require('path');
 
-setFfmpegPath(ffmpegPath);
+ffmpeg.setFfmpegPath(ffmpegPath);
 
 // Get command-line arguments
 const args = process.argv.slice(2); // Skip 'node' and script name
 const inputFile = args[0];
-const outputFile = args[1] || format({
-  dir: dirname(inputFile),
-  name: parse(inputFile).name,
+const outputFile = args[1] || path.format({
+  dir: path.dirname(inputFile),
+  name: path.parse(inputFile).name,
   ext: '.webm',
 });
 
